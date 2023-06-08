@@ -1,20 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Pedido = ({props}) => {
-useEffect( ()=>{ setTimeout 
-    } 
-)
+
+const [showPedido, setShowPedido] = useState(false)  
+
+useEffect( ()=> { 
+  setTimeout(() => {setShowPedido(true)},2000) 
+  } , [] )
+
+const cancelPedido = () => {
+  setShowPedido(false)
+  console.log('se desmonto el componente')
+  alert('el pedido ha sido cancelado')
+}
 
   return (
     <div>
 
-      <h1> Pedido </h1>
+      <h1> Pedido: </h1>
 
-     {setTimeout((props) => {
-        <li>{props}</li>
-      }, 2000)}
+      {showPedido ? <h3>{props}</h3> : null}
 
-      <button> Cancelar pedido</button>
+      {console.log('Elcomponente fue actualizado')}
+
+      <button onClick={cancelPedido}> Cancelar pedido</button>
 
     </div>
   )
